@@ -1,5 +1,7 @@
 export interface AuthSignInDTO {
-  auth:boolean,
+  nome:string | undefined,
+  email: string | undefined,
+  administador: boolean | undefined,
+  auth: boolean,
   token: string,
-  han_empresa: number | undefined,
 }

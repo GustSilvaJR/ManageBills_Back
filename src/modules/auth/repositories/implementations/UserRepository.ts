@@ -29,8 +29,8 @@ export class UserRepository implements IUserRepository {
    
     const user = await this.repository.find({
       where: {
-        NOM_EMAIL: email,
-        NOM_SENHA: password,
+        email: email,
+        senha: password,
       },
     });
 
@@ -39,9 +39,11 @@ export class UserRepository implements IUserRepository {
       const secret:string = String(process.env.SECRET);
 
       let val:AuthSignInDTO = {
+        nome: user[0].nome,
+        email: user[0].email,
+        administador: user[0].administrador,
         auth: true,
-        token: jwt.sign({ email:user[0].NOM_EMAIL, filial:user[0].NOM_USUARIO }, secret ),
-        han_empresa:user[0].HAN_EMPRESA,
+        token: jwt.sign({ email:user[0].nome, filial:user[0].email }, secret ),
       };
   
       return val;
@@ -61,7 +63,7 @@ export class UserRepository implements IUserRepository {
 
     const user = await this.repository.find({
       where: {
-        NOM_EMAIL: email,
+        email: email,
       },
     });
 
