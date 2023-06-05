@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken';
 import { User } from '../../entities/User';
 import { AuthSignInDTO } from '../../interfaces/authSignInDTO';
 import { IUserDTO, IUserLoginDTO, IUserRepository } from '../IUserRepository';
+import md5 from 'md5';
 
 export class UserRepository implements IUserRepository {
 
@@ -30,7 +31,7 @@ export class UserRepository implements IUserRepository {
     const user = await this.repository.find({
       where: {
         email: email,
-        senha: password,
+        senha: md5(password),
       },
     });
 

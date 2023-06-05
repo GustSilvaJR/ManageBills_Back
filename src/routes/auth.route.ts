@@ -7,6 +7,7 @@ import { signInController } from '../modules/auth/useCases/signIn';
 const authRoute = Router();
 
 authRoute.post('/login', async (Request, Response) => {
+  console.log('recebi');
   await signInController.handle(Request, Response);
 });
 

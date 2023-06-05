@@ -22,6 +22,8 @@ export class SignInController {
 
     const result = await this._signInUseCase.execute({ email, password });
 
+    console.log(result);
+
     if (typeof result == 'object') {
       
       textResponse = {
